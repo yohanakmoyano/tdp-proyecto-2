@@ -10,6 +10,7 @@ public class BloqueGrafico {
     	imagenes[1]=im2;
     	imagenes[2]=im3;
     	imagenes[3]=im4;
+    	
     }
 	public void rotar() {
 

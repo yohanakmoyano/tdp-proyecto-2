@@ -1,5 +1,6 @@
 package bloque;
 
+import gui.BloqueGrafico;
 import gui.TetriminoGrafico;
 import logica.Grilla;
 
@@ -26,5 +27,10 @@ public class Bloque {
 
 	public void desocupar() {
 
+	}
+	
+	public BloqueGrafico getBloqueGrafico() {
+		return null;
+		
 	}
 }

@@ -10,10 +10,11 @@ public class Grilla {
 	protected int cantColum;
 	protected BloqueGrafico bloqueLibre;
 	public Grilla(Logica j,int f,int c) {
+		String rutaBloqueLibre= this.getClass().getResource("/images/bloque_libre.png").toString();
 		miJuego=j;
 		cantFilas=f;
 		cantColum=c;
-		bloqueLibre=new BloqueGrafico(0,"","","","");//aca van las rutas de las fotos.
+		bloqueLibre=new BloqueGrafico(0,rutaBloqueLibre,rutaBloqueLibre,rutaBloqueLibre,rutaBloqueLibre);//aca van las rutas de las fotos.
 		matriz=new Bloque[f][c];
 		for (int i=0;i<f;i++)
 			for (int k=0;k<c;k++)
@@ -32,4 +33,10 @@ public class Grilla {
 	public BloqueGrafico getBloqueGrafico() {
 		return bloqueLibre;
 	}
+	
+	public void cambioBloque(Bloque b) {
+		
+	}
+	
+	
 }

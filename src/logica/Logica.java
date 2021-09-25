@@ -1,7 +1,7 @@
 package logica;
 
 import java.util.Random;
-
+import bloque.Bloque;
 import gui.GUI;
 import tetrimino.*;
 
@@ -27,31 +27,31 @@ public class Logica {
 		Tetrimino t = null;
 		switch (i) {
 		case 0: {
-			//t = new Cuadrado();
+			t = new Cuadrado(miGrillaPrincipal);
 			break;
 		}
 		case 1: {
-			t = new I();
+			t = new I(miGrillaPrincipal);
 			break;
 		}
 		case 2: {
-			t = new L();
+			t = new L(miGrillaPrincipal);
 			break;
 		}
 		case 3: {
-			t = new LInvertida();
+			t = new LInvertida(miGrillaPrincipal);
 			break;
 		}
 		case 4: {
-			t = new TInvertida();
+			t = new TInvertida(miGrillaPrincipal);
 			break;
 		}
 		case 5: {
-			t = new Z();
+			t = new Z(miGrillaPrincipal);
 			break;
 		}
 		case 6: {
-			t = new ZInvertida();
+			t = new ZInvertida(miGrillaPrincipal);
 			break;
 		}
 		}
@@ -68,7 +68,7 @@ public class Logica {
 
 	}
 
-	public void verificarLineasSeguir() {
+	private void verificarLineasSeguir() {
 
 	}
 
@@ -103,5 +103,9 @@ public class Logica {
 			break;
 		}
 		}
+	}
+	
+	public void cambioBloque(Bloque b) {
+		
 	}
 }
