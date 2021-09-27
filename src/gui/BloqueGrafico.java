@@ -13,7 +13,10 @@ public class BloqueGrafico {
     	
     }
 	public void rotar() {
-
+		if (rotacion<270)
+		  rotacion=rotacion+90;
+		else
+			rotacion=0;
 	}
 
 }

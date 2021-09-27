@@ -11,6 +11,9 @@ public class TetriminoGrafico {
 	}
 
 	public void rotar() {
-
+		poscentral.rotar();
+		pos1.rotar();
+		pos2.rotar();
+		pos3.rotar();
 	}
 }
