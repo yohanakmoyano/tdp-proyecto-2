@@ -14,7 +14,7 @@ public class Grilla {
 		miJuego=j;
 		cantFilas=f;
 		cantColum=c;
-		bloqueLibre=new BloqueGrafico(0,rutaBloqueLibre,rutaBloqueLibre,rutaBloqueLibre,rutaBloqueLibre);//aca van las rutas de las fotos.
+		bloqueLibre=new BloqueGrafico(0,rutaBloqueLibre,rutaBloqueLibre,rutaBloqueLibre,rutaBloqueLibre);//aca van las rutas de las fotos de lo que representaría un bloque libre.
 		matriz=new Bloque[f][c];
 		for (int i=0;i<f;i++)
 			for (int k=0;k<c;k++)
@@ -30,12 +30,12 @@ public class Grilla {
 		return matriz[i][j];
 	}
 
-	public BloqueGrafico getBloqueGrafico() {
+	public BloqueGrafico getBloqueGraficoLibre() {
 		return bloqueLibre;
 	}
 	
 	public void cambioBloque(Bloque b) {
-		
+		miJuego.cambioBloque(b);
 	}
 	
 	

@@ -81,7 +81,7 @@ public class Logica {
 	}
 
 	public void rotar() {
-
+		tetriActual.rotar();
 	}
 
 	public synchronized void operar(int op) {
