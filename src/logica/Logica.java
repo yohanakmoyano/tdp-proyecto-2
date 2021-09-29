@@ -65,19 +65,58 @@ public class Logica {
 	}
 
 	public void moverAbajo() {
-
+		tetriActual.moverAbajo(); 
 	}
 
-	private void verificarLineasSeguir() {
-
+	private int cantLineasCompletas() {
+		int cant=0; 
+		int filasComp[]=miGrillaPrincipal.filasCompletas();
+		
+		for(int i=0;i<filasComp.length & filasComp[i]!=-1 ;i++) {
+			cant++;
+		}
+		
+		return cant;
 	}
+	
+	public void actualizarPuntaje() {
+		int cant=cantLineasCompletas(); 
+	    if(cant==1) {
+	    	puntaje=puntaje+100;
+	    }
+	    
+	    if(cant==2) {
+	    	puntaje=puntaje+200;
+	    }
+	    
+	    if(cant==3) {
+	    	puntaje=puntaje+500;
+	    }
+	    
+	    if(cant==4) {
+	    	puntaje=puntaje+800;
+	    }
+	}
+	
+	public void borrarFila() {
+		//deberia comunicarle a la grilla y gui- 
+		int filasComp[]=miGrillaPrincipal.filasCompletas();
+		int cant=cantLineasCompletas(); 
+		int fila=0;
+		for(int i=0; i<cant; i++) {
+			fila=filasComp[i];
+			miGrillaPrincipal.desocuparFila(fila);
+			miGui.desocuparFila(fila); //creo que esto es necesario
+		}
+	}
+	
 
 	public void moverIzquierda() {
-
+		tetriActual.moverIzquierda();
 	}
 
 	public void moverDerecha() {
-
+		tetriActual.moverDerecha();
 	}
 
 	public void rotar() {
@@ -106,6 +145,17 @@ public class Logica {
 	}
 	
 	public void cambioBloque(Bloque b) {
+		miGui.cambioBloque(b);
+	}
+
+	public void actualizarGrilla(int fila) {
+		miGui.actualizarGrilla(fila);
 		
+	}
+	
+	public void actualizarVelocidad() {
+		if(miReloj.getTiempoActualEnSegundos()%100==0) {
+			miReloj.setStep(miReloj.getStep()/2);
+		}
 	}
 }

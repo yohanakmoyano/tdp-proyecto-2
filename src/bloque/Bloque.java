@@ -1,7 +1,6 @@
 package bloque;
 
 import gui.BloqueGrafico;
-import gui.TetriminoGrafico;
 import logica.Grilla;
 
 public class Bloque {
