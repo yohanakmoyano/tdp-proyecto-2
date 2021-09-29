@@ -40,20 +40,15 @@ public class LInvertida extends Tetrimino {
 			
 			if(movimientoPosible) {
 				//Debemos tener cuidado con el orden en el que movemos los bloques. Debemos mover primero los tres de abajo y por último el de arriba.
-				newP1.ocupar(pos1.getBloqueGrafico());
-				pos1.desocupar();
+				
+				ocuparDesocuparCuatroBloquesEnOrden(newP1, pos1, newP2, pos2, newPosCentral, poscentral, newP3, pos3);
+				
 				pos1 = newP1;
 				
-				newP2.ocupar(pos2.getBloqueGrafico());
-				pos2.desocupar();
 				pos2 = newP2;
 				
-				newPosCentral.ocupar(poscentral.getBloqueGrafico());
-				poscentral.desocupar();
 				poscentral = newPosCentral;
 				
-				newP3.ocupar(pos3.getBloqueGrafico());
-				pos3.desocupar();
 				pos3 = newP3;
 				
 			}
@@ -71,20 +66,15 @@ public class LInvertida extends Tetrimino {
 			
 			if(newP1.estaLibre()) { //Si el bloque adyacente a izquierda de P1 está libre entonces procedo a mover los bloques a izquierda.
 				//Teniendo cuidado con el orden en que se mueven. Primero muevo a p1, luego a PC, y finalizo moviendo a p2 y p3 (estos dos ultimos pueden moverse en cualquier orden).
-				newP1.ocupar(pos1.getBloqueGrafico());
-				pos1.desocupar();
+				
+				ocuparDesocuparCuatroBloquesEnOrden(newP1, pos1, newPosCentral, poscentral, newP2, pos2, newP3, pos3);
+				
 				pos1 = newP1;
 				
-				newPosCentral.ocupar(poscentral.getBloqueGrafico());
-				poscentral.desocupar();
 				poscentral = newPosCentral;
 				
-				newP2.ocupar(pos2.getBloqueGrafico());
-				pos2.desocupar();
 				pos2 = newP2;
 				
-				newP3.ocupar(pos3.getBloqueGrafico());
-				pos3.desocupar();
 				pos3 = newP3;
 				
 			}
@@ -101,20 +91,15 @@ public class LInvertida extends Tetrimino {
 			
 			if(newP3.estaLibre() && newP2.estaLibre()) { //Si hay lugar libre para mover
 				//Considerando que debemos mover primero a p2, luego pc y por último p1. Con respecto a p3, puede moverse en cualquier momento inmediato.
-				newP3.ocupar(pos3.getBloqueGrafico());
-				pos3.desocupar();
+				
+				ocuparDesocuparCuatroBloquesEnOrden(newP3, pos3, newP2, pos2, newPosCentral, poscentral, newP1, pos1);
+				
 				pos3 = newP3;
 
-				newP2.ocupar(pos2.getBloqueGrafico());
-				pos2.desocupar();
 				pos2 = newP2;
 
-				newPosCentral.ocupar(poscentral.getBloqueGrafico());
-				poscentral.desocupar();
 				poscentral = newPosCentral;
 				
-				newP1.ocupar(pos1.getBloqueGrafico());
-				pos1.desocupar();
 				pos1 = newP1;
 				
 			}
@@ -123,8 +108,70 @@ public class LInvertida extends Tetrimino {
 
 	@Override
 	public void rotar() {
-		// TODO Auto-generated method stub
+		boolean seguir = true;
+		Bloque newP1 = null, newP2 = null, newP3 = null;
+		switch(rotacion) {
+		case(0): { //Rotar de cero a noventa.
+			seguir = poscentral.getFila() != (miGrilla.getFilas() - 1); //Si no estoy en la última fila
+			if(seguir) {
+				int filaCentral = poscentral.getFila(), columnaCentral = poscentral.getColumna();
+				newP1 = miGrilla.getBloque(filaCentral + 1, columnaCentral); 
+				newP2 = miGrilla.getBloque(filaCentral - 1 , columnaCentral);  
+				newP3 = miGrilla.getBloque(filaCentral - 1 , columnaCentral - 1); 
+			}
+			break;
+		}
+		case(90): { //Rotar de noventa a 180
+			seguir = poscentral.getColumna() != (miGrilla.getColumnas() - 1); //Si no se encuentra en la última columna.
+			if(seguir) {
+				int filaCentral = poscentral.getFila(), columnaCentral = poscentral.getColumna();
+				newP1 = miGrilla.getBloque(filaCentral, columnaCentral + 1); 
+				newP2 = miGrilla.getBloque(filaCentral, columnaCentral - 1);  
+				newP3 = miGrilla.getBloque(filaCentral + 1, columnaCentral - 1);  
+				
+			}
+			break;
+		}
+		case(180): {//Rotar de 180 a 270
+			seguir = poscentral.getFila() != 0; //Si no se encuentra en la primer fila.
+			if(seguir) {
+				int filaCentral = poscentral.getFila(), columnaCentral = poscentral.getColumna();
+				newP1 = miGrilla.getBloque(filaCentral - 1, columnaCentral);
+				newP2 = miGrilla.getBloque(filaCentral + 1 , columnaCentral);
+				newP3 = miGrilla.getBloque(filaCentral + 1 , columnaCentral + 1);
+				
+			}
+			break;
+		}
+		case(270): { //Rotar de 270 a 0
+			seguir = poscentral.getColumna() != 0; //Si no se encuentra en la primera columna.
+			if(seguir) {
+				int filaCentral = poscentral.getFila(), columnaCentral = poscentral.getColumna();
+				newP1 = miGrilla.getBloque(filaCentral, columnaCentral - 1);
+				newP2 = miGrilla.getBloque(filaCentral, columnaCentral + 1);
+				newP3 = miGrilla.getBloque(filaCentral - 1, columnaCentral + 1);
+				
+			}
+			break;
+		}
+		}
 		
+		seguir = newP1.estaLibre() && newP2.estaLibre() && newP3.estaLibre();
+		if(seguir) {
+			ocuparDesocuparTresBloquesEnOrden(newP1, pos1, newP2, pos2, newP3, pos3);
+			asignarTresBloquesNuevos(newP1, newP2, newP3);
+		}
+		
+		pos1.getBloqueGrafico().rotar();
+		pos2.getBloqueGrafico().rotar();
+		pos3.getBloqueGrafico().rotar();
+		poscentral.getBloqueGrafico().rotar();
+		
+		if (rotacion<270)
+			  rotacion=rotacion+90;
+			else
+				rotacion=0;
+	
 	}
 	
 	public Bloque getPos1() {

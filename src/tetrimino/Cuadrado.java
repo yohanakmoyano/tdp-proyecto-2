@@ -44,20 +44,15 @@ public class Cuadrado extends Tetrimino {
 			if (movimientoPosible) {
 				// Cuidado con el orden en el que se reemplazan/ocupan los bloques, debemos
 				// mover primero los dos de abajo y luego los otros dos de arriba.
-				newP3.ocupar(pos3.getBloqueGrafico());
-				pos3.desocupar();
+				
+				ocuparDesocuparCuatroBloquesEnOrden(newP3, pos3, newPosCentral, poscentral, newP1, pos1, newP2, pos2);
+				
 				pos3 = newP3;
-
-				newPosCentral.ocupar(poscentral.getBloqueGrafico());
-				poscentral.desocupar();
+				
 				poscentral = newPosCentral;
 
-				newP1.ocupar(pos1.getBloqueGrafico());
-				pos1.desocupar();
 				pos1 = newP1;
 
-				newP2.ocupar(pos2.getBloqueGrafico());
-				pos2.desocupar();
 				pos2 = newP2;
 
 			}
@@ -78,20 +73,15 @@ public class Cuadrado extends Tetrimino {
 																	// bloques.
 				// Teniendo cuidado con el orden en que se mueven. Primero muevo los dos de la
 				// izquierda (p1 y pc) y luego los dos de la derecha (p2 y p3).
-				newP1.ocupar(pos1.getBloqueGrafico());
-				pos1.desocupar();
+				
+				ocuparDesocuparCuatroBloquesEnOrden(newP1, pos1, newPosCentral, poscentral, newP2, pos2, newP3, pos3);
+				
 				pos1 = newP1;
-
-				newPosCentral.ocupar(poscentral.getBloqueGrafico());
-				poscentral.desocupar();
+				
 				poscentral = newPosCentral;
-
-				newP2.ocupar(pos2.getBloqueGrafico());
-				pos2.desocupar();
+				
 				pos2 = newP2;
-
-				newP3.ocupar(pos3.getBloqueGrafico());
-				pos3.desocupar();
+				
 				pos3 = newP3;
 
 			}
@@ -109,20 +99,15 @@ public class Cuadrado extends Tetrimino {
 
 			if (newP2.estaLibre() && newP3.estaLibre()) { // Si hay lugar libre para mover
 				// Considerando que debemos mover primero a p2 y p3 y luego a p1 y pc.
-				newP2.ocupar(pos2.getBloqueGrafico());
-				pos2.desocupar();
+				
+				ocuparDesocuparCuatroBloquesEnOrden(newP2, pos2, newP3, pos3, newP1, pos1, newPosCentral, poscentral);
+				
 				pos2 = newP2;
-
-				newP3.ocupar(pos3.getBloqueGrafico());
-				pos3.desocupar();
+				
 				pos3 = newP3;
 
-				newP1.ocupar(pos1.getBloqueGrafico());
-				pos1.desocupar();
 				pos1 = newP1;
-
-				newPosCentral.ocupar(poscentral.getBloqueGrafico());
-				poscentral.desocupar();
+				
 				poscentral = newPosCentral;
 
 			}
