@@ -10,6 +10,7 @@ public class Logica {
 	protected Reloj miReloj;
 	protected Grilla miGrillaPrincipal;
 	protected Tetrimino tetriActual;
+	//protected Tetrimino tetriSiguiente;
 	protected int puntaje;
 	public static final int moverIzquierda = 1;
 	public static final int moverDerecha = 2;
@@ -157,5 +158,14 @@ public class Logica {
 		if(miReloj.getTiempoActualEnSegundos()%100==0) {
 			miReloj.setStep(miReloj.getStep()/2);
 		}
+	}
+	
+	public int getPuntaje() {
+		return puntaje;
+	
+	}
+	
+	public float getTiempo() {
+		return miReloj.getTiempoActualEnSegundos();
 	}
 }

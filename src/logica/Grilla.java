@@ -11,7 +11,7 @@ public class Grilla {
 	protected BloqueGrafico bloqueLibre;
 	
 	public Grilla(Logica j,int f,int c) {
-		String rutaBloqueLibre= this.getClass().getResource("/images/bloque_libre.png").toString();
+		String rutaBloqueLibre= this.getClass().getResource("/images/bloque_libre.jpg").toString();
 		miJuego=j;
 		cantFilas=f;
 		cantColum=c;
