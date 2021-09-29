@@ -1,30 +1,38 @@
 package logica;
 
+
 public class Reloj extends Thread {
 	protected Logica miJuego;
 	protected boolean activo;
 	protected int step;
-	protected long milisegundos; 
-	protected long tiempoActualEnSegundos; 
-
+	protected long segundos;
+	
 	public Reloj(Logica juego, int step) {
 		miJuego = juego;
 		activo = true;
 		this.step = step;
-		milisegundos=System.currentTimeMillis(); 
-		tiempoActualEnSegundos = System.currentTimeMillis() / 1000;
+		segundos=System.currentTimeMillis()/1000; 
 	}
 
 	public void detener() {
 		activo = false;
 	}
 	
-	public long getTiempoActualEnSegundos() {
-		return tiempoActualEnSegundos; 
+	public float getMinutos() {
+		return (segundos/60); 
 	}
+	
+	public long getSegundos() {
+		return segundos;
+	}
+	
 
 	public void setStep(int step) {
 		this.step = step;
+	}
+	
+	public String getTiempo() {
+		return "00:"+this.getMinutos()+":"+segundos;  
 	}
 	
 	public int getStep() {

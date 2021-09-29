@@ -9,15 +9,15 @@ public class ZInvertida extends Tetrimino {
 
 	public ZInvertida(Grilla mg) {
 		super();
-		pos1 = miGrilla.getBloque(1, 3);
-		pos2 = miGrilla.getBloque(0, 4);
-		pos3 = miGrilla.getBloque(0, 5);
-		poscentral = miGrilla.getBloque(1, 4);
+		pos1 = mg.getBloque(1, 3);
+		pos2 = mg.getBloque(0, 4);
+		pos3 = mg.getBloque(0, 5);
+		poscentral = mg.getBloque(1, 4);
 		miGrilla = mg;
-		String rutaZInvertida_0 = this.getClass().getResource("/images/ZInvertida_Tetrimino_0.png").toString();
-		String rutaZInvertida_90 = this.getClass().getResource("/images/ZInvertida_Tetrimino_90.png").toString();
-		String rutaZInvertida_180 = this.getClass().getResource("/images/ZInvertida_Tetrimino_180.png").toString();
-		String rutaZInvertida_270 = this.getClass().getResource("/images/ZInvertida_Tetrimino_270.png").toString();
+		String rutaZInvertida_0 ="/images/ZInvertida_Tetrimino_0.png";
+		String rutaZInvertida_90 ="/images/ZInvertida_Tetrimino_90.png";
+		String rutaZInvertida_180 ="/images/ZInvertida_Tetrimino_180.png";
+		String rutaZInvertida_270 ="/images/ZInvertida_Tetrimino_270.png";
 		BloqueGrafico bloqueGrafico1 = new BloqueGrafico(0, rutaZInvertida_0, rutaZInvertida_90, rutaZInvertida_180,
 				rutaZInvertida_270);
 		BloqueGrafico bloqueGrafico2 = new BloqueGrafico(0, rutaZInvertida_0, rutaZInvertida_90, rutaZInvertida_180,
@@ -190,5 +190,25 @@ public class ZInvertida extends Tetrimino {
 		poscentral.desocupar();
 		poscentral = newPosCentral;
 
+	}
+	
+	public Bloque getPos1() {
+    	return pos1; 
+    }
+	
+	public Bloque getPos2() {
+		return pos2;
+	}
+	
+	public Bloque getPos3() {
+		return pos3; 
+	}
+	
+	public Bloque getPosCentral() {
+		return poscentral; 
+	}
+	
+	public TetriminoGrafico getTetriminoGrafico() {
+		return miTetris; 
 	}
 }

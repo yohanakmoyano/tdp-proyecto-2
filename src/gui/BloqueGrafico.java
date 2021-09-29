@@ -19,21 +19,28 @@ public class BloqueGrafico {
 			rotacion=0;
 	}
 	
+	
 	public String obtenerRutaImagen() {
 		String ruta=imagenes[0]; 
 		
-		switch (rotacion) {
-			case 90: ruta=imagenes[1]; 
-			break; 
-			
-			case 180: ruta=imagenes[2]; 
-			break; 
-			
-			case 270: ruta=imagenes[3];
-			break; 
+		if (rotacion==0) {
+			ruta=imagenes[0]; 
+		}
+		
+		if (rotacion==90) {
+			ruta=imagenes[1]; 
+		}
+		
+		if (rotacion==180) {
+			ruta=imagenes[2]; 
+		}
+		
+		if (rotacion==270) {
+			ruta=imagenes[3]; 
 		}
 		
 		return ruta;  
 	}
+	
 
 }

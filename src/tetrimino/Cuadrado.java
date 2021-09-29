@@ -9,15 +9,16 @@ public class Cuadrado extends Tetrimino {
 
 	public Cuadrado(Grilla mg) {
 		super();
-		pos1 = miGrilla.getBloque(0, 5);
-		pos2 = miGrilla.getBloque(0, 6);
-		pos3 = miGrilla.getBloque(1, 6);
-		poscentral = miGrilla.getBloque(1, 5);
 		miGrilla = mg;
-		String rutaCuadrado_0 = this.getClass().getResource("/images/Cuadrado_Tetrimino_0.png").toString();
-		String rutaCuadrado_90 = this.getClass().getResource("/images/Cuadrado_Tetrimino_90.png").toString();
-		String rutaCuadrado_180 = this.getClass().getResource("/images/Cuadrado_Tetrimino_180.png").toString();
-		String rutaCuadrado_270 = this.getClass().getResource("/images/Cuadrado_Tetrimino_270.png").toString();
+		pos1 = mg.getBloque(0, 5);
+		pos2 = mg.getBloque(0, 6);
+		pos3 = mg.getBloque(1, 6);
+		poscentral = mg.getBloque(1, 5);
+		
+		String rutaCuadrado_0 ="/images/Cuadrado_Tetrimino_0.png";
+		String rutaCuadrado_90 ="/images/Cuadrado_Tetrimino_90.png";
+		String rutaCuadrado_180 ="/images/Cuadrado_Tetrimino_180.png";
+		String rutaCuadrado_270 ="/images/Cuadrado_Tetrimino_270.png";
 		BloqueGrafico bloqueGrafico1 = new BloqueGrafico(0, rutaCuadrado_0, rutaCuadrado_90, rutaCuadrado_180,
 				rutaCuadrado_270);
 		BloqueGrafico bloqueGrafico2 = new BloqueGrafico(0, rutaCuadrado_0, rutaCuadrado_90, rutaCuadrado_180,
@@ -169,6 +170,26 @@ public class Cuadrado extends Tetrimino {
 		pos3=newP3;
 		poscentral=newPosCentral;
 
+	}
+	
+    public Bloque getPos1() {
+    	return pos1; 
+    }
+	
+	public Bloque getPos2() {
+		return pos2;
+	}
+	
+	public Bloque getPos3() {
+		return pos3; 
+	}
+	
+	public Bloque getPosCentral() {
+		return poscentral; 
+	} 
+	
+	public TetriminoGrafico getTetriminoGrafico() {
+		return miTetris; 
 	}
 	
 }

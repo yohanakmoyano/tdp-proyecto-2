@@ -16,4 +16,20 @@ public class TetriminoGrafico {
 		pos2.rotar();
 		pos3.rotar();
 	}
+	
+	public BloqueGrafico getPos1() {
+		return pos1; 
+	}
+	
+	public BloqueGrafico getPos2() {
+		return pos2; 
+	}
+	
+	public BloqueGrafico getPos3() {
+		return pos3; 
+	}
+	
+	public BloqueGrafico getPosCentral() {
+		return poscentral; 
+	}
 }

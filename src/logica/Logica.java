@@ -18,9 +18,9 @@ public class Logica {
 	public static final int rotar = 4;
 
 	public Logica(GUI mg) {
-		Random rn = new Random(7);
-		tetriActual=generarTetris(rn.nextInt());
 		miGrillaPrincipal = new Grilla(this, 21, 10);
+		Random rn = new Random();
+		tetriActual=generarTetris(rn.nextInt(7));
 		miGui=mg;
 	}
 
@@ -155,21 +155,26 @@ public class Logica {
 	}
 	
 	public void actualizarVelocidad() {
-		if(miReloj.getTiempoActualEnSegundos()%100==0) {
+		if(miReloj.getSegundos()%100==0) {
 			miReloj.setStep(miReloj.getStep()/2);
 		}
 	}
+	
 	
 	public int getPuntaje() {
 		return puntaje;
 	
 	}
 	
-	public float getTiempo() {
-		return miReloj.getTiempoActualEnSegundos();
+	public String getTiempo() {
+		return miReloj.getTiempo();
 	}
 	
-	public String obtenerRutaBloqueGrafico() {
+	public String obtenerRutaBloqueLibre() {
 		return miGrillaPrincipal.getBloqueGraficoLibre().obtenerRutaImagen();
+	}
+	
+	public Tetrimino getTetriActual() {
+		return tetriActual; 
 	}
 }

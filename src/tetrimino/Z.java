@@ -9,15 +9,15 @@ public class Z extends Tetrimino{
 	
 	public Z(Grilla mg) {
 		super();
-		pos1=miGrilla.getBloque(0,3);
-	    pos2=miGrilla.getBloque(0,4);
-	    pos3=miGrilla.getBloque(1,5);
-	    poscentral=miGrilla.getBloque(1,4);
+		pos1=mg.getBloque(0,3);
+	    pos2=mg.getBloque(0,4);
+	    pos3=mg.getBloque(1,5);
+	    poscentral=mg.getBloque(1,4);
 	    miGrilla=mg;
-	    String rutaZ_0= this.getClass().getResource("/images/Z_Tetrimino_0.png").toString();
-	    String rutaZ_90= this.getClass().getResource("/images/Z_Tetrimino_90.png").toString();
-	    String rutaZ_180= this.getClass().getResource("/images/Z_Tetrimino_180.png").toString();
-	    String rutaZ_270= this.getClass().getResource("/images/Z_Tetrimino_270.png").toString();
+	    String rutaZ_0="/images/Z_Tetrimino_0.png";
+	    String rutaZ_90="/images/Z_Tetrimino_90.png";
+	    String rutaZ_180="/images/Z_Tetrimino_180.png";
+	    String rutaZ_270="/images/Z_Tetrimino_270.png";
 	    BloqueGrafico bloqueGrafico1=new BloqueGrafico(0,rutaZ_0,rutaZ_90,rutaZ_180,rutaZ_270);
 	    BloqueGrafico bloqueGrafico2=new BloqueGrafico(0,rutaZ_0,rutaZ_90,rutaZ_180,rutaZ_270);
 	    BloqueGrafico bloqueGrafico3=new BloqueGrafico(0,rutaZ_0,rutaZ_90,rutaZ_180,rutaZ_270);
@@ -122,6 +122,26 @@ public class Z extends Tetrimino{
 	public void rotar() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public Bloque getPos1() {
+    	return pos1; 
+    }
+	
+	public Bloque getPos2() {
+		return pos2;
+	}
+	
+	public Bloque getPos3() {
+		return pos3; 
+	}
+	
+	public Bloque getPosCentral() {
+		return poscentral; 
+	} 
+	
+	public TetriminoGrafico getTetriminoGrafico() {
+		return miTetris; 
 	}
 
 }

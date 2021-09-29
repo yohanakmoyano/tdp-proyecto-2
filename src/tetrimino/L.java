@@ -10,15 +10,16 @@ public class L extends Tetrimino{
 	
 	public L(Grilla mg) {
 		super();
-		pos1=miGrilla.getBloque(0,3);
-		pos2=miGrilla.getBloque(1,3);
-		pos3=miGrilla.getBloque(1,5);
-	    poscentral=miGrilla.getBloque(1,4);
-	    miGrilla=mg;
-	    String rutaL_0= this.getClass().getResource("/Images/L_Tetrimino_0.png").toString();
-	    String rutaL_90= this.getClass().getResource("/Images/L_Tetrimino_90.png").toString();
-	    String rutaL_180= this.getClass().getResource("/Images/L_Tetrimino_180.png").toString();
-	    String rutaL_270= this.getClass().getResource("/Images/L_Tetrimino_270.png").toString();
+		miGrilla=mg;
+		pos1=mg.getBloque(0,3);
+		pos2=mg.getBloque(1,3);
+		pos3=mg.getBloque(1,5);
+	    poscentral=mg.getBloque(1,4);
+	    
+	    String rutaL_0="/Images/L_Tetrimino_0.png";
+	    String rutaL_90="/Images/L_Tetrimino_90.png";
+	    String rutaL_180="/Images/L_Tetrimino_180.png";
+	    String rutaL_270="/Images/L_Tetrimino_270.png";
 	    BloqueGrafico bloqueGrafico1=new BloqueGrafico(0,rutaL_0,rutaL_90,rutaL_180,rutaL_270);
 	    BloqueGrafico bloqueGrafico2=new BloqueGrafico(0,rutaL_0,rutaL_90,rutaL_180,rutaL_270);
 	    BloqueGrafico bloqueGrafico3=new BloqueGrafico(0,rutaL_0,rutaL_90,rutaL_180,rutaL_270);
@@ -126,6 +127,26 @@ public class L extends Tetrimino{
 	public void rotar() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public Bloque getPos1() {
+    	return pos1; 
+    }
+	
+	public Bloque getPos2() {
+		return pos2;
+	}
+	
+	public Bloque getPos3() {
+		return pos3; 
+	}
+	
+	public Bloque getPosCentral() {
+		return poscentral; 
+	} 
+	
+	public TetriminoGrafico getTetriminoGrafico() {
+		return miTetris; 
 	}
 
 }

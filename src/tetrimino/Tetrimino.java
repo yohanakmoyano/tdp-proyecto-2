@@ -20,4 +20,16 @@ public abstract class Tetrimino {
 	public abstract void moverDerecha();
 
 	public abstract void rotar();
+	
+	public abstract Bloque getPos1(); 
+	
+	public abstract Bloque getPos2();
+	
+	public abstract Bloque getPos3();
+	
+	public abstract Bloque getPosCentral(); 
+	
+	public abstract TetriminoGrafico getTetriminoGrafico(); 
+	
+	
 }
