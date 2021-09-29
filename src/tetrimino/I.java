@@ -8,11 +8,12 @@ import logica.Grilla;
 public class I extends Tetrimino {
 	public I(Grilla mg) {
 		super();
+		miGrilla=mg;
 		pos1=mg.getBloque(0,3);
 		pos2=mg.getBloque(0,5);
 		pos3=mg.getBloque(0,6);
 	    poscentral=mg.getBloque(0,4);
-	    miGrilla=mg;
+	    
 	    String rutaI_0="/images/I_Tetrimino_0.png";
 	    String rutaI_90="/images/I_Tetrimino_90.png";
 	    String rutaI_180= "/images/I_Tetrimino_180.png";

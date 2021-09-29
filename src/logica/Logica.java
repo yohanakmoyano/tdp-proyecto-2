@@ -10,7 +10,9 @@ public class Logica {
 	protected Reloj miReloj;
 	protected Grilla miGrillaPrincipal;
 	protected Tetrimino tetriActual;
-	//protected Tetrimino tetriSiguiente;
+	protected Tetrimino tetriSiguiente;
+	protected int sigT;
+	protected String urlSiguiente;
 	protected int puntaje;
 	public static final int moverIzquierda = 1;
 	public static final int moverDerecha = 2;
@@ -20,8 +22,12 @@ public class Logica {
 	public Logica(GUI mg) {
 		miGrillaPrincipal = new Grilla(this, 21, 10);
 		Random rn = new Random();
-		tetriActual=generarTetris(rn.nextInt(7));
-		miGui=mg;
+		tetriActual = generarTetris(rn.nextInt(7));
+		
+		sigT = rn.nextInt(7);
+		tetriSiguiente = generarTetris(sigT);
+		urlSiguiente = mostrarTetriminoSiguiente(sigT);
+		miGui = mg;
 	}
 
 	private Tetrimino generarTetris(int i) {
@@ -59,6 +65,42 @@ public class Logica {
 		return t;
 	}
 
+	public String mostrarTetriminoSiguiente(int sigT) {
+		String t = null;
+		switch (sigT) {
+		case 0: {
+			t = "/images/Cuadrado_Tetrimino.png";
+			break;
+		}
+		case 1: {
+			t = "/images/I_Tetrimino.png";
+			break;
+		}
+		case 2: {
+			t = "/images/L_Tetrimino.png";
+			break;
+		}
+		case 3: {
+			t = "/images/LInvertido_Tetrimino.png";
+			break;
+		}
+		case 4: {
+			t = "/images/TInvertida_Tetrimino.png";;
+			break;
+		}
+		case 5: {
+			t = "/images/Z_Tetrimino.png";
+			break;
+		}
+		case 6: {
+			t = "/images/ZInvertida_Tetrimino.png";
+			break;
+		}
+		}
+		return t;
+	}
+	
+	
 	public void iniciarJuego() {
 		miReloj = new Reloj(this, 1000);
 		puntaje = 0;
@@ -176,5 +218,9 @@ public class Logica {
 	
 	public Tetrimino getTetriActual() {
 		return tetriActual; 
+	}
+	
+	public String getUrlSiguiente() {
+		return urlSiguiente;
 	}
 }

@@ -9,11 +9,12 @@ public class Z extends Tetrimino{
 	
 	public Z(Grilla mg) {
 		super();
+		miGrilla=mg;
 		pos1=mg.getBloque(0,3);
 	    pos2=mg.getBloque(0,4);
 	    pos3=mg.getBloque(1,5);
 	    poscentral=mg.getBloque(1,4);
-	    miGrilla=mg;
+	  
 	    String rutaZ_0="/images/Z_Tetrimino_0.png";
 	    String rutaZ_90="/images/Z_Tetrimino_90.png";
 	    String rutaZ_180="/images/Z_Tetrimino_180.png";

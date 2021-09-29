@@ -60,6 +60,11 @@ public class GUI extends JFrame{
 		panelJuego.setVisible(true);
 		panelJuego.setLayout(null);
 		
+		JLabel sigTetrimino_label = new JLabel("");
+		sigTetrimino_label.setBounds(20, 61, 145, 145);
+		ponerImagen(sigTetrimino_label, mijuego.getUrlSiguiente());
+		panelJuego.add(sigTetrimino_label);
+		
 		
 		JLabel puntaje_Label = new JLabel("");
 		puntaje_Label.setForeground(Color.WHITE);
@@ -135,10 +140,10 @@ public class GUI extends JFrame{
 	    int filaposc=posc.getFila();
 	    int colposc=posc.getColumna(); 
 	    
-	    ponerImagen(matrizPrincipal[filapos1][colpos1],"/images/Cuadrado_Tetrimino_0.png");
-	    ponerImagen(matrizPrincipal[filapos2][colpos2],"/images/Cuadrado_Tetrimino_0.png");
-	    ponerImagen(matrizPrincipal[filapos3][colpos3],"/images/Cuadrado_Tetrimino_0.png");
-	    ponerImagen(matrizPrincipal[filaposc][colposc],"/images/Cuadrado_Tetrimino_0.png");
+	    ponerImagen(matrizPrincipal[filapos1][colpos1], mijuego.getTetriActual().getTetriminoGrafico().getPos1().obtenerRutaImagen());
+	    ponerImagen(matrizPrincipal[filapos2][colpos2], mijuego.getTetriActual().getTetriminoGrafico().getPos2().obtenerRutaImagen());
+	    ponerImagen(matrizPrincipal[filapos3][colpos3], mijuego.getTetriActual().getTetriminoGrafico().getPos3().obtenerRutaImagen());
+	    ponerImagen(matrizPrincipal[filaposc][colposc], mijuego.getTetriActual().getTetriminoGrafico().getPosCentral().obtenerRutaImagen());
 		
 	}
 	
