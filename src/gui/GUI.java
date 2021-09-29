@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,6 +18,7 @@ import javax.swing.JPanel;
 import bloque.Bloque;
 import logica.Logica;
 import javax.swing.JTextPane;
+import java.awt.GridLayout;
 
 public class GUI extends JFrame{
 	protected Logica mijuego;
@@ -54,18 +56,18 @@ public class GUI extends JFrame{
 		panelJuego.setVisible(true);
 		panelJuego.setLayout(null);
 		
-		/*JLabel Grilla_label = new JLabel("");
-		Grilla_label.setBounds(207, 33, 481, 701);
-		panelJuego.add(Grilla_label);
-		*/
 		
-		
-		/*JLabel puntaje_Label = new JLabel("");
+		JLabel puntaje_Label = new JLabel("");
 		puntaje_Label.setForeground(Color.WHITE);
 		puntaje_Label.setBackground(Color.WHITE);
 		puntaje_Label.setBounds(721, 301, 151, 50);
 		panelJuego.add(puntaje_Label);
-		*/
+		
+		
+		JPanel panel_grilla = new JPanel();
+		panel_grilla.setBounds(207, 24, 488, 372);
+		panelJuego.add(panel_grilla);
+		panel_grilla.setLayout(new GridLayout(21, 10, 0, 0));
 		
 		JLabel TetriNext_label = new JLabel("");
 		TetriNext_label.setBounds(20, 47, 167, 181);
@@ -77,11 +79,12 @@ public class GUI extends JFrame{
 		puntaje_text.setEditable(false);
 		puntaje_text.setText("Puntaje: " + String.valueOf(mijuego.getPuntaje()));
 		
+		/*
 		JTextPane tiempo_text = new JTextPane();
 		tiempo_text.setBounds(732, 239, 119, 26);
 		panelJuego.add(tiempo_text);
 		tiempo_text.setText("Tiempo: " + String.valueOf(mijuego.getTiempo()));
-		
+		*/
 		
 		String rutaFotoJuego= this.getClass().getResource("/images/gaming_fondo.png").toString();
 		ImageIcon fotoJuego=null;
@@ -99,18 +102,29 @@ public class GUI extends JFrame{
 		fondoJuego.setIcon(new ImageIcon(medidaJuego));
 		panelJuego.add(fondoJuego, BorderLayout.CENTER);
 		
+		
 		matrizPrincipal = new JLabel[21][10];
 		for(int i=0; i<21; i++) {
 			for(int j=0; j<10; j++) {
-				matrizPrincipal[i][j] = new JLabel();
-				matrizPrincipal[i][j].setIcon(new ImageIcon("/images/bloque_libre.jpg"));
-				panelJuego.add(matrizPrincipal[i][j]);
+				matrizPrincipal[i][j] = new JLabel("H");
+				matrizPrincipal[i][j].setBounds(i, j, 50, 50);
+				//matrizPrincipal[i][j].setIcon(new ImageIcon(mijuego.obtenerRutaBloqueGrafico()));
+				ponerImagen(matrizPrincipal[i][j],"/images/bloque_libre.jpg");
+				panel_grilla.add(matrizPrincipal[i][j]); 
 			}
 		}
 		
+	 
 		
 		
 		
+		
+	}
+	
+	private void ponerImagen(JLabel lbl, String ruta) {
+		ImageIcon img = new ImageIcon(GUI.class.getResource(ruta));
+		Icon imgLbl = new ImageIcon(img.getImage().getScaledInstance(lbl.getWidth(), lbl.getHeight(), Image.SCALE_DEFAULT));
+		lbl.setIcon(imgLbl);
 	}
 	
 	public void graficarBloque(BloqueGrafico b){

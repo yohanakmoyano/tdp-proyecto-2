@@ -168,4 +168,8 @@ public class Logica {
 	public float getTiempo() {
 		return miReloj.getTiempoActualEnSegundos();
 	}
+	
+	public String obtenerRutaBloqueGrafico() {
+		return miGrillaPrincipal.getBloqueGraficoLibre().obtenerRutaImagen();
+	}
 }
