@@ -11,7 +11,7 @@ public class Reloj extends Thread {
 		miJuego = juego;
 		activo = true;
 		this.step = step;
-		segundos=System.currentTimeMillis()/1000; 
+		//segundos=System.currentTimeMillis()/1000; 
 	}
 
 	public void detener() {
@@ -26,7 +26,6 @@ public class Reloj extends Thread {
 		return segundos;
 	}
 	
-
 	public void setStep(int step) {
 		this.step = step;
 	}

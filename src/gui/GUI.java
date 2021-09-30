@@ -121,7 +121,8 @@ public class GUI extends JFrame {
 				panel_grilla.add(matrizPrincipal[i][j]);
 			}
 		}
-
+		
+		
 		// tetriActual
 		Bloque pos1 = mijuego.getTetriActual().getPos1();
 		Bloque pos2 = mijuego.getTetriActual().getPos2();

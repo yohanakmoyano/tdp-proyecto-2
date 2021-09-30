@@ -93,7 +93,7 @@ public class Logica {
 			break;
 		}
 		case 6: {
-			t = "/images/ZInvertida_Tetrimino.png";
+			t = "/images/ZInvertido_Tetrimino.png";
 			break;
 		}
 		}
@@ -105,10 +105,6 @@ public class Logica {
 		miReloj = new Reloj(this, 1000);
 		puntaje = 0;
 		miReloj.start();
-	}
-
-	public void moverAbajo() {
-		tetriActual.moverAbajo(); 
 	}
 
 	private int cantLineasCompletas() {
@@ -153,6 +149,10 @@ public class Logica {
 		}
 	}
 	
+
+	public void moverAbajo() {
+		tetriActual.moverAbajo(); 
+	}
 
 	public void moverIzquierda() {
 		tetriActual.moverIzquierda();

@@ -90,7 +90,8 @@ public class Grilla {
 		for(int i=fila-1;i>=0;i--) {
 			for(int j=0;j<cantColum;j++) {
 				Bloque aux=matriz[i][j]; 
-				matriz[i+1][j]=aux; 
+				matriz[i+1][j].ocupar(aux.getBloqueGrafico());
+				//Esta asignación, creo que debemos reemplazarla con matriz[i+1][j].ocupar(aux.getBloqueGrafico());
 				matriz[i][j].desocupar();
 			}
 		}
