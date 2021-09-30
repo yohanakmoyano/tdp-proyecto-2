@@ -81,7 +81,7 @@ public class Logica {
 			break;
 		}
 		case 3: {
-			t = "/images/LInvertido_Tetrimino.png";
+			t = "/images/LInvertida_Tetrimino.png";
 			break;
 		}
 		case 4: {
@@ -93,7 +93,7 @@ public class Logica {
 			break;
 		}
 		case 6: {
-			t = "/images/ZInvertido_Tetrimino.png";
+			t = "/images/ZInvertida_Tetrimino.png";
 			break;
 		}
 		}

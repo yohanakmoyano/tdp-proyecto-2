@@ -180,10 +180,10 @@ public class GUI extends JFrame {
 	}
 
 	public void cambioBloque(Bloque b) {
-		//String ruta=b.getBloqueGrafico().obtenerRutaImagen();
+		String ruta=b.getBloqueGrafico().obtenerRutaImagen();
 		int f=b.getFila(); 
 		int c=b.getColumna(); //System.out.println("-"+ruta);
-		//ponerImagen(matrizPrincipal[f][c],ruta);
+		ponerImagen(matrizPrincipal[f][c],ruta);
 		
 	}
 
