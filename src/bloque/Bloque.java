@@ -46,4 +46,9 @@ public class Bloque {
 		return miRepresentacion;
 		
 	}
+	
+	public void cambiarMiRepresentacion(BloqueGrafico blq) {
+		miRepresentacion = blq;
+	}
+	
 }

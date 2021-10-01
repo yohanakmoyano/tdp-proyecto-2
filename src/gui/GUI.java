@@ -16,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import bloque.Bloque;
 
+import java.awt.event.KeyListener;
+
 import logica.Logica;
 
 import javax.swing.JTextPane;
@@ -49,34 +51,50 @@ public class GUI extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/images/icon_tetris.png")));
 		setTitle("TETRIS");
-		setSize(new Dimension(900, 600));
+		setSize(new Dimension(1000, 1000));
 		setResizable(false);
 
-		mijuego = new Logica(this);
-		mijuego.iniciarJuego();
-		getContentPane().setLayout(null);
-
 		panelJuego = new JPanel();
-		panelJuego.setBounds(0, 0, 900, 600);
+		panelJuego.setBounds(0, 0, 900, 759);
 		getContentPane().add(panelJuego);
 		panelJuego.setVisible(true);
 		panelJuego.setLayout(null);
+	
+		JPanel panel_grilla = new JPanel();
+		panel_grilla.setBounds(207, 24, 488, 665);
+		panelJuego.add(panel_grilla);
+		panel_grilla.setLayout(new GridLayout(21, 10, 0, 0));
 
+		matrizPrincipal = new JLabel[21][10];
+		
+		for (int i = 0; i < 21; i++) {
+			for (int j = 0; j < 10; j++) {
+				matrizPrincipal[i][j] = new JLabel();
+				matrizPrincipal[i][j].setBounds(i, j, 60, 29);
+				ponerImagen(matrizPrincipal[i][j], "/images/bloque_libre.jpg");
+				panel_grilla.add(matrizPrincipal[i][j]);
+			}
+		}
+		
+		mijuego = new Logica(this);
+		mijuego.iniciarJuego();
+		
+		KeyListener listener = new MyKeyListener();
+		addKeyListener(listener);
+		setFocusable(true);
+		
+		getContentPane().setLayout(null);
+	
 		JLabel sigTetrimino_label = new JLabel("");
 		sigTetrimino_label.setBounds(20, 61, 145, 145);
 		ponerImagen(sigTetrimino_label, mijuego.getUrlSiguiente());
 		panelJuego.add(sigTetrimino_label);
-
+		
 		JLabel puntaje_Label = new JLabel("");
 		puntaje_Label.setForeground(Color.WHITE);
 		puntaje_Label.setBackground(Color.WHITE);
 		puntaje_Label.setBounds(721, 301, 151, 50);
 		panelJuego.add(puntaje_Label);
-
-		JPanel panel_grilla = new JPanel();
-		panel_grilla.setBounds(207, 24, 488, 576);
-		panelJuego.add(panel_grilla);
-		panel_grilla.setLayout(new GridLayout(21, 10, 0, 0));
 
 		JLabel TetriNext_label = new JLabel("");
 		TetriNext_label.setBounds(20, 47, 167, 181);
@@ -107,48 +125,35 @@ public class GUI extends JFrame {
 		Image medidaJuego = fotoJuego.getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT);
 
 		JLabel fondoJuego = new JLabel("");
-		fondoJuego.setBounds(0, 24, 900, 600);
+		fondoJuego.setBounds(0, 24, 900, 745);
 		panelJuego.add(fondoJuego);
 		fondoJuego.setIcon(new ImageIcon(medidaJuego));
 		panelJuego.add(fondoJuego, BorderLayout.CENTER);
-
-		matrizPrincipal = new JLabel[21][10];
-		for (int i = 0; i < 21; i++) {
-			for (int j = 0; j < 10; j++) {
-				matrizPrincipal[i][j] = new JLabel();
-				matrizPrincipal[i][j].setBounds(i, j, 60, 29);
-				ponerImagen(matrizPrincipal[i][j], mijuego.obtenerRutaBloqueLibre());
-				panel_grilla.add(matrizPrincipal[i][j]);
-			}
-		}
-		
-		
-		// tetriActual
-		Bloque pos1 = mijuego.getTetriActual().getPos1();
-		Bloque pos2 = mijuego.getTetriActual().getPos2();
-		Bloque pos3 = mijuego.getTetriActual().getPos3();
-		Bloque posc = mijuego.getTetriActual().getPosCentral();
-		// mijuego.getTetriActual().getTetriminoGrafico().getPos1().obtenerRutaImagen();
-		// mijuego.getTetriActual().getTetriminoGrafico().getPos2().obtenerRutaImagen()
-		int filapos1 = pos1.getFila();
-		int colpos1 = pos1.getColumna();
-		int filapos2 = pos2.getFila();
-		int colpos2 = pos2.getColumna();
-		int filapos3 = pos3.getFila();
-		int colpos3 = pos3.getColumna();
-		int filaposc = posc.getFila();
-		int colposc = posc.getColumna();
-
-		ponerImagen(matrizPrincipal[filapos1][colpos1],
-				mijuego.getTetriActual().getTetriminoGrafico().getPos1().obtenerRutaImagen());
-		ponerImagen(matrizPrincipal[filapos2][colpos2],
-				mijuego.getTetriActual().getTetriminoGrafico().getPos2().obtenerRutaImagen());
-		ponerImagen(matrizPrincipal[filapos3][colpos3],
-				mijuego.getTetriActual().getTetriminoGrafico().getPos3().obtenerRutaImagen());
-		ponerImagen(matrizPrincipal[filaposc][colposc],
-				mijuego.getTetriActual().getTetriminoGrafico().getPosCentral().obtenerRutaImagen());
 		
 	}
+	
+	
+	public class MyKeyListener implements KeyListener {
+		@Override
+		public void keyTyped(KeyEvent e) {
+		}
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			 switch(e.getKeyCode()) {
+             case KeyEvent.VK_LEFT: { mijuego.operar(Logica.moverIzquierda); break; }
+             case KeyEvent.VK_RIGHT: { mijuego.operar(Logica.moverDerecha); break; }
+             case KeyEvent.VK_UP: { mijuego.operar(Logica.rotar); break; }
+             case KeyEvent.VK_DOWN: { mijuego.operar(Logica.moverAbajo); break; }
+         	}
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+
+		}
+	}	
+	
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_DOWN ) {
 			//mijuego.moverAbajo();
@@ -181,6 +186,8 @@ public class GUI extends JFrame {
 
 	public void cambioBloque(Bloque b) {
 		String ruta=b.getBloqueGrafico().obtenerRutaImagen();
+		int i = 0;
+		System.out.println("ruta 1:" + ruta);
 		int f=b.getFila(); 
 		int c=b.getColumna(); //System.out.println("-"+ruta);
 		ponerImagen(matrizPrincipal[f][c],ruta);

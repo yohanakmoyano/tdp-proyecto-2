@@ -20,14 +20,25 @@ public class Logica {
 	public static final int rotar = 4;
 
 	public Logica(GUI mg) {
+		miGui = mg;
 		miGrillaPrincipal = new Grilla(this, 21, 10);
 		Random rn = new Random();
 		tetriActual = generarTetris(rn.nextInt(7));
+		tetriActual.imprimirtetri();
 		
 		sigT = rn.nextInt(7);
 		tetriSiguiente = generarTetris(sigT);
 		urlSiguiente = mostrarTetriminoSiguiente(sigT);
-		miGui = mg;
+	}
+
+	public void tetriLLegoaFin() {
+		tetriActual = generarTetris(sigT);
+		tetriActual.imprimirtetri();
+		
+		Random rn = new Random();
+		sigT = rn.nextInt(7);
+		urlSiguiente = mostrarTetriminoSiguiente(7);
+		tetriSiguiente = generarTetris(sigT);
 	}
 
 	private Tetrimino generarTetris(int i) {
@@ -107,6 +118,10 @@ public class Logica {
 		miReloj.start();
 	}
 
+	public boolean sigueEnJuego() {
+		return miReloj.getEstado();
+	}
+	
 	private int cantLineasCompletas() {
 		int cant=0; 
 		int filasComp[]=miGrillaPrincipal.filasCompletas();
@@ -138,14 +153,13 @@ public class Logica {
 	}
 	
 	public void borrarFila() {
-		//deberia comunicarle a la grilla y gui- 
 		int filasComp[]=miGrillaPrincipal.filasCompletas();
 		int cant=cantLineasCompletas(); 
 		int fila=0;
 		for(int i=0; i<cant; i++) {
 			fila=filasComp[i];
 			miGrillaPrincipal.desocuparFila(fila);
-			miGui.desocuparFila(fila); //creo que esto es necesario
+			miGui.desocuparFila(fila);
 		}
 	}
 	

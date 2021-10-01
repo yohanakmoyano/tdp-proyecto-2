@@ -25,6 +25,11 @@ public class Z extends Tetrimino{
 	    BloqueGrafico bloqueGrafico4=new BloqueGrafico(0,rutaZ_0,rutaZ_90,rutaZ_180,rutaZ_270);
 	    miTetris=new TetriminoGrafico(bloqueGrafico1,bloqueGrafico2,bloqueGrafico3,bloqueGrafico4);
 	    
+	    pos1.cambiarMiRepresentacion(bloqueGrafico1);
+		pos2.cambiarMiRepresentacion(bloqueGrafico2);
+		pos3.cambiarMiRepresentacion(bloqueGrafico3);
+		poscentral.cambiarMiRepresentacion(bloqueGrafico4);
+		
 	}
 
 	@Override
@@ -51,6 +56,33 @@ public class Z extends Tetrimino{
 				
 			}
 		}
+		
+		if(!movimientoPosible)
+			miGrilla.llegoAFinGrilla();
+		/**
+		switch(rotacion) {
+		case(0): {
+			if(poscentral.getFila() == (miGrilla.getFilas()-1))
+				miGrilla.llegoAFinGrilla();
+			break;
+		}
+		case(90): {
+			if(pos1.getFila() == (miGrilla.getFilas()-1))
+				miGrilla.llegoAFinGrilla();
+			break;
+		}
+		case(180): {
+			if(pos2.getFila() == (miGrilla.getFilas() - 1))
+				miGrilla.llegoAFinGrilla();
+			break;
+		}
+		case(270): {
+			if(pos3.getFila() == (miGrilla.getFilas()-1))
+				miGrilla.llegoAFinGrilla();
+			break;
+		}
+		}
+		*/
 		return movimientoPosible;
 	}
 
@@ -162,9 +194,13 @@ public class Z extends Tetrimino{
 		}
 		
 		pos1.getBloqueGrafico().rotar();
+		pos1.ocupar(pos1.getBloqueGrafico());
 		pos2.getBloqueGrafico().rotar();
+		pos2.ocupar(pos2.getBloqueGrafico());
 		pos3.getBloqueGrafico().rotar();
+		pos3.ocupar(pos3.getBloqueGrafico());
 		poscentral.getBloqueGrafico().rotar();
+		poscentral.ocupar(poscentral.getBloqueGrafico());
 		
 		if (rotacion<270)
 			  rotacion=rotacion+90;

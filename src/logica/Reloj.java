@@ -18,12 +18,8 @@ public class Reloj extends Thread {
 		activo = false;
 	}
 	
-	public float getMinutos() {
-		return (segundos/60); 
-	}
-	
-	public long getSegundos() {
-		return segundos;
+	public boolean getEstado() {
+		return activo;
 	}
 	
 	public void setStep(int step) {
@@ -49,4 +45,13 @@ public class Reloj extends Thread {
 		}
 	}
 
+	public float getMinutos() {
+		return ((segundos-(System.currentTimeMillis()/1000))/60); 
+	}
+	
+
+	public long getSegundos() {
+		return (segundos-(System.currentTimeMillis()/1000))%60;
+	}
+	
 }

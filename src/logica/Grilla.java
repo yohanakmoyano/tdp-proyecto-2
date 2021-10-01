@@ -43,6 +43,10 @@ public class Grilla {
 		miJuego.cambioBloque(b);
 	}
 	
+	public void llegoAFinGrilla() {
+		miJuego.tetriLLegoaFin();
+	}
+	
 	public int[] filasCompletas() { //retorno un arreglo con el numero de filas que se completaron y además voy a saber la cantidad de filas comepltas
 		
 		int [] filas=new int[4];
@@ -85,13 +89,12 @@ public class Grilla {
 		actualizarGrilla(f); 
 	}
 	
-	public void actualizarGrilla(int fila) { //no se si esta bien pensado. 
+	public void actualizarGrilla(int fila) { 
 		
 		for(int i=fila-1;i>=0;i--) {
 			for(int j=0;j<cantColum;j++) {
 				Bloque aux=matriz[i][j]; 
 				matriz[i+1][j].ocupar(aux.getBloqueGrafico());
-				//Esta asignación, creo que debemos reemplazarla con matriz[i+1][j].ocupar(aux.getBloqueGrafico());
 				matriz[i][j].desocupar();
 			}
 		}
