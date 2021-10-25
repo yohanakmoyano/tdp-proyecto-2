@@ -44,7 +44,6 @@ public class Bloque {
 	
 	public BloqueGrafico getBloqueGrafico() {
 		return miRepresentacion;
-		
 	}
 	
 	public void cambiarMiRepresentacion(BloqueGrafico blq) {
@@ -52,3 +51,4 @@ public class Bloque {
 	}
 	
 }
+

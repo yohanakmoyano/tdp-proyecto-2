@@ -3,6 +3,8 @@ package gui;
 public class BloqueGrafico {
 	protected int rotacion;
 	protected String[] imagenes;//direccion de las 4 imagenes.
+	
+	
     public BloqueGrafico(int r,String im1,String im2,String im3,String im4) {
     	rotacion=r;
     	imagenes=new String[4];

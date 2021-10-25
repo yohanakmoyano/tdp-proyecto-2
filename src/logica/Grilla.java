@@ -10,27 +10,30 @@ public class Grilla {
 	protected int cantColum;
 	protected BloqueGrafico bloqueLibre;
 	
+	
 	public Grilla(Logica juego,int f,int c) {
 		String rutaBloqueLibre="/images/bloque_libre.jpg";
 		miJuego=juego;
 		cantFilas=f;
 		cantColum=c;
-		bloqueLibre=new BloqueGrafico(0,rutaBloqueLibre,rutaBloqueLibre,rutaBloqueLibre,rutaBloqueLibre);//aca van las rutas de las fotos de lo que representaría un bloque libre.
+		bloqueLibre=new BloqueGrafico(0,rutaBloqueLibre,rutaBloqueLibre,rutaBloqueLibre,rutaBloqueLibre);
 		matriz=new Bloque[cantFilas][cantColum];
 		for (int i=0;i<cantFilas;i++) {
 			for (int j=0;j<cantColum;j++) {
 				matriz[i][j]=new Bloque(i,j,this);
 			}
-		}
-			
+		}		
 				
 	}
+	
 	public int getFilas() {
 		return cantFilas;
 	}
+	
 	public int getColumnas() {
 		return cantColum;
 	}
+	
 	public Bloque getBloque(int i, int j) {
 		return matriz[i][j];
 	}
@@ -41,66 +44,43 @@ public class Grilla {
 	
 	public void cambioBloque(Bloque b) {
 		miJuego.cambioBloque(b);
-	}
-	
-	public void llegoAFinGrilla() {
-		miJuego.tetriLLegoaFin();
-	}
-	
-	public int[] filasCompletas() { //retorno un arreglo con el numero de filas que se completaron y además voy a saber la cantidad de filas comepltas
+	}	
 		
-		int [] filas=new int[4];
-		
-		for(int k=0;k<filas.length;k++) { //inicializo los valores em -1, para no confundir el valor 0, de la fila 0 . 
-			filas[k]=-1; 
+	//Método que se encarga de copiar la fila f1 en la fila f2. 
+	public void copiar(int f1, int f2) {
+		for(int j = 0; j<cantColum; j++) {
+			matriz[f2][j].ocupar(matriz[f1][j].getBloqueGrafico());
 		}
-		
-		int cant=0; 
-		for(int i=0 ; i<cantFilas ; i++) {
-			if( filaCompleta(i) ) {
-				filas[cant]=i; 
-				cant++;
+	}
+	
+	//Metodo que se encarga de desplazar todo lo que se encuentra arriba de fx (incluyendo a fx) hacia abajo en fy. 
+	public void desplazar(int fx, int fy) {
+		int f = fx; 
+		int i = fy;
+		while((i >= 0) && (f > 0)) {
+			for(int j = 0; j<cantColum; j++) {
+				Bloque bloq_aux = matriz[f][j];
+				if(!bloq_aux.estaLibre())
+					matriz[i][j].ocupar(bloq_aux.getBloqueGrafico());
+				else { 
+					if(!matriz[i][j].estaLibre())
+						matriz[i][j].desocupar();
+				}
 			}
+			i--;
+			f--;
 		}
-		
-		return filas; 
 	}
-	
-	private boolean filaCompleta(int f) {
-		boolean completa=true; 
-		boolean seguir=true; 
-		for(int i=0; i<cantColum & seguir; i++) {
-			if(matriz[f][i].estaLibre()==true) {
-				seguir=false;
-				completa=false; 
-			}
+		
+	//Comprueba si la fila F de la grilla se encuentra ocupada por completo. 
+	public boolean comprobarFila(int f) {
+		boolean completa = true;
+		int c = 0;
+		while(completa && (c < cantColum)) {
+			completa = completa && !matriz[f][c].estaLibre();
+			c++;
 		}
-		
-		return completa; 
+		return completa;
 	}
-	
-	public void desocuparFila(int f) {
-		for(int i=0;i<cantColum;i++) {
-			matriz[f][i].desocupar();
-		}
-		
-		//mover una posicion abajo en la grilla. 
-		
-		actualizarGrilla(f); 
-	}
-	
-	public void actualizarGrilla(int fila) { 
-		
-		for(int i=fila-1;i>=0;i--) {
-			for(int j=0;j<cantColum;j++) {
-				Bloque aux=matriz[i][j]; 
-				matriz[i+1][j].ocupar(aux.getBloqueGrafico());
-				matriz[i][j].desocupar();
-			}
-		}
-		
-		miJuego.actualizarGrilla(fila); 
-	}
-	
 	
 }
